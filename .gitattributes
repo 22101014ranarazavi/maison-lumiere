@@ -1,0 +1,12 @@
+# Normalise line endings in the repository to LF, regardless of the OS
+# that checks the files out. Keeps diffs clean and avoids CRLF churn.
+* text=auto eol=lf
+
+# Binary assets
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.ico binary
+*.pdf binary

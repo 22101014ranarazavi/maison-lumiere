@@ -1,0 +1,215 @@
+-- Maison Lumiere — demo catalogue.
+-- Loaded by backend/scripts/setup.php only when the products table is empty
+-- (or whenever the script is run with --fresh).
+
+INSERT INTO categories (slug, name, description, accent, sort_order) VALUES
+('floral',   'Floral',   'Blooming bouquets — petals, absolutes and powdery softness.', '#c98ba4', 1),
+('woody',    'Woody',    'Cedar, sandalwood and vetiver wrapped in quiet strength.',    '#8a6f4d', 2),
+('citrus',   'Citrus',   'Sunlit hesperides — bergamot, lemon, neroli.',                '#c9a227', 3),
+('oriental', 'Oriental', 'Amber, resins and spice for the hours after dark.',           '#a3512e', 4),
+('fresh',    'Fresh',    'Sea air, green leaves and clean white musk.',                 '#5f8f8a', 5),
+('gourmand', 'Gourmand', 'Vanilla, caramel and praline — edible indulgence.',           '#b8763f', 6);
+
+INSERT INTO products
+(sku, name, house, description, category_id, gender, size_ml, price, compare_at_price, stock,
+ top_notes, heart_notes, base_notes, color_a, color_b, shape, featured, rating,
+ tagline, story, craft_notes, longevity, sillage, best_season, occasion)
+VALUES
+('LM-001', 'Nuit d''Or', 'Maison Lumière',
+ 'An amber nocturne built around saffron and rose absolute. Nuit d''Or opens bright and burnished, then settles into warm resin and vanilla — the fragrance equivalent of candlelight on polished wood.',
+ 4, 'unisex', 50, 185.00, NULL, 18,
+ 'Bergamot, Saffron', 'Rose Absolute, Oud', 'Amber, Vanilla, Musk',
+ '#d8b36a', '#7a5230', 'faceted', 1, 4.8,
+ 'Candlelight caught in amber and rose.',
+ 'We composed Nuit d''Or after a dinner in a stone house outside Grasse, when the candles were low and the room smelled of resin, old wood and the roses climbing the wall. Saffron opens it — burnished, almost metallic — before the rose absolute arrives in full. Oud and amber do the slow work underneath, and by the time the vanilla appears the fragrance has stopped announcing itself and simply glows.\n\nIt is the composition our perfumer wears to his own work.',
+ 'Aged twelve weeks in the cellar before bottling. The amber accord is almost twice as old as everything else in the formula, which is why it smells so settled.',
+ '9–11 hours', 'Strong — it fills a doorway', 'Autumn and winter', 'Evenings, celebrations, cold weather'),
+
+('LM-002', 'Fleur de Lune', 'Maison Lumière',
+ 'A pale, luminous floral composed for cool evenings. Jasmine and peony float over pear and pink pepper, drying down to the softest white musk.',
+ 1, 'women', 75, 160.00, NULL, 24,
+ 'Pear, Pink Pepper', 'Jasmine, Peony', 'White Musk, Cedar',
+ '#f2c6d4', '#a56b8a', 'round', 1, 4.7,
+ 'A pale floral for cool evenings.',
+ 'Fleur de Lune was built around a single image — white petals seen by moonlight, which is to say slightly grey, slightly cold, and more beautiful for it. Pear keeps the opening dewy rather than sweet, pink pepper gives the jasmine somewhere to land, and the white musk at the base is deliberately quiet. This is a fragrance worn close, discovered at conversational distance.',
+ 'The jasmine is extracted in Grasse from night-picked blossoms, the only hour the flower gives up its indolic, animalic side.',
+ '5–7 hours', 'Soft and close', 'Spring and cool summer evenings', 'Dinners, galleries, everyday elegance'),
+
+('LM-003', 'Cèdre Blanc', 'Maison Lumière',
+ 'Dry, elegant and endlessly wearable. Cardamom and grapefruit give way to iris and vetiver, resting on a foundation of cedarwood and sandalwood.',
+ 2, 'unisex', 50, 145.00, NULL, 30,
+ 'Cardamom, Grapefruit', 'Vetiver, Iris', 'Cedarwood, Sandalwood',
+ '#cbb9a2', '#6d5b45', 'square', 1, 4.6,
+ 'Dry cedar, cardamom and a twist of iris.',
+ 'The brief was simple — a fragrance you could wear every day for a year without ever having to think about it. Cardamom and grapefruit make the entrance brisk, iris and vetiver keep the heart dry, and cedarwood and sandalwood finish it with the clean smell of pencil shavings and old paper. It has become the house''s quiet bestseller: not the one people ask about, but the one they re-order.',
+ 'Cedarwood is matured in oak for six months to strip the camphor out. Most houses work with the raw material and apologise for it in the drydown.',
+ '7–9 hours', 'Moderate — a scent bubble, not a cloud', 'Year round', 'The office, travel, everyday wear'),
+
+('LM-004', 'Zeste Sauvage', 'Maison Lumière',
+ 'Sicilian lemon and bergamot snapped with cold mint. A vivacious daytime signature that never turns sharp — neroli keeps it polished.',
+ 3, 'unisex', 100, 120.00, NULL, 42,
+ 'Sicilian Lemon, Bergamot', 'Neroli, Mint', 'White Cedar, Musk',
+ '#f4dd8a', '#b08d3a', 'tall', 1, 4.5,
+ 'Sicilian lemon snapped with cold mint.',
+ 'Made for July. Sicilian lemon and bergamot are pressed while the peel is still cold, mint is added at a quantity most perfumers would call reckless, and neroli polishes the whole thing so it never drifts into cleaning product. White cedar in the base gives it enough structure to survive a hot afternoon.',
+ 'Citrus oils degrade within months, so we buy in small lots from Calabria and blend within eight weeks of harvest. The mint is added last, at bottling strength.',
+ '4–6 hours', 'Moderate', 'Spring and summer', 'Daytime, holidays, sport'),
+
+('LM-005', 'Rose Éternelle', 'Maison Lumière',
+ 'A Turkish rose in full bloom, lifted by lychee and grounded with patchouli and a thread of honey. Romantic without ever becoming sweet.',
+ 1, 'women', 50, 210.00, 240.00, 12,
+ 'Lychee, Freesia', 'Turkish Rose, Lily', 'Patchouli, Honey',
+ '#e8a0a8', '#8f3f52', 'round', 0, 4.9,
+ 'Turkish rose in full bloom.',
+ 'There is a rose, and then there is Rose Éternelle — most rose fragrances are the second thing pretending to be the first. Here the Turkish absolute is used at a concentration that would be considered vulgar in a cheaper formula, lifted by lychee so it stays fresh rather than jammy, and grounded with patchouli and a thread of honey so it lasts into the evening. Romantic without ever becoming sweet.',
+ 'Ten thousand hand-picked roses go into each 50 ml batch. The harvest runs three weeks each May and the atelier does nothing else during it.',
+ '8–10 hours', 'Moderate to strong', 'Spring, autumn and cool evenings', 'Weddings, anniversaries, romantic evenings'),
+
+('LM-006', 'Oud Impérial', 'Maison Lumière',
+ 'Our most opulent composition: Laotian oud and supple leather, warmed by cinnamon, nutmeg and tobacco. A statement fragrance for cold weather.',
+ 4, 'men', 50, 320.00, NULL, 9,
+ 'Cinnamon, Nutmeg', 'Oud, Leather', 'Amber, Tobacco',
+ '#8a5a34', '#3c2415', 'faceted', 0, 4.9,
+ 'Laotian oud, leather and warm spice.',
+ 'The most expensive thing we make, and unapologetic about it. Laotian oud — animalic, smoky, faintly medicinal — sits over supple leather while cinnamon and nutmeg warm it from below and tobacco sweetens the drydown. One spray is a statement, two is a declaration. Wear it in cold weather, or do not wear it at all.',
+ 'Oud is macerated alone for eight weeks before it joins the rest of the formula. Added early it swamps everything, added late it never settles.',
+ '10–14 hours', 'Very strong — one spray is enough', 'Autumn and winter', 'Evenings, formal occasions, cold weather'),
+
+('LM-007', 'Brise Marine', 'Maison Lumière',
+ 'Sea salt and cold lemon over a mineral heart of sage and geranium. Like a linen shirt drying in Atlantic wind.',
+ 5, 'unisex', 100, 135.00, NULL, 28,
+ 'Sea Salt, Lemon', 'Sage, Geranium', 'Ambergris, Driftwood',
+ '#a8cfd8', '#4a7d8c', 'tall', 0, 4.4,
+ 'Sea salt, cold lemon, Atlantic wind.',
+ 'Composed on the Breton coast in October, in weather that made the brief for itself. Sea salt and cold lemon over a mineral heart of sage and geranium, drying down to ambergris and driftwood. It does not smell like the beach — it smells like standing on a cliff above it in a linen shirt.',
+ 'The salt accord is built from a mineral extract rather than the usual marine molecules, which is why it reads as weather instead of shampoo.',
+ '5–7 hours', 'Moderate', 'Spring and summer', 'Daytime, weekends, holidays'),
+
+('LM-008', 'Vanille Noire', 'Maison Lumière',
+ 'Caramelised vanilla orchid laced with tonka bean and praline, kept in check by a dry musk. Comfort in a bottle.',
+ 6, 'women', 50, 175.00, NULL, 21,
+ 'Caramel, Pink Pepper', 'Vanilla Orchid, Tonka', 'Praline, Musk',
+ '#e0b98a', '#6f4423', 'round', 1, 4.7,
+ 'Caramelised vanilla, kept grown-up.',
+ 'Vanilla is easy to make childish and hard to make adult. We started with a vanilla orchid absolute rather than synthetic vanillin, caramelised the sugar note until it turned slightly bitter, and finished with tonka and dry musk so the sweetness stops at the point where you would want a second glass rather than a second helping. Comfort in a bottle, with its collar up.',
+ 'Bourbon vanilla pods are soaked in our own amber tincture for six weeks. The amber is what keeps the drydown out of cupcake territory.',
+ '8–10 hours', 'Moderate', 'Autumn and winter', 'Evenings, cold days, cosy weekends'),
+
+('LM-009', 'Jardin Secret', 'Maison Lumière',
+ 'A green floral for spring mornings — crisp apple, freesia and garden rose over blond woods.',
+ 1, 'women', 75, 155.00, NULL, 17,
+ 'Green Apple, Bergamot', 'Freesia, Garden Rose', 'Blond Woods, Musk',
+ '#cfe0a8', '#6f8a4a', 'round', 0, 4.5,
+ 'A green floral for spring mornings.',
+ 'The garden at the atelier in Grasse, roughly nine in the morning — snapped apple stems, freesia, and the roses that have already been cut for market. Blond woods and musk keep it transparent. This is a fragrance with a window open somewhere in it.',
+ 'Cold-pressed green apple gives the opening its snap. Most houses use a synthetic, which reads as apple-flavoured sweets within the hour.',
+ '5–7 hours', 'Soft to moderate', 'Spring and summer', 'Mornings, work, gifting'),
+
+('LM-010', 'Ambre Fumé', 'Maison Lumière',
+ 'Incense smoke curling through amber and labdanum, sparked by black pepper and elemi. Contemplative and slightly austere.',
+ 2, 'unisex', 50, 240.00, NULL, 14,
+ 'Black Pepper, Elemi', 'Labdanum, Incense', 'Amber, Guaiac Wood',
+ '#b08d57', '#4a3520', 'square', 0, 4.8,
+ 'Incense smoke curling through amber.',
+ 'Contemplative and slightly austere — a fragrance for reading rooms and long flights. Black pepper and elemi flare at the start, labdanum and incense build the smoke, and amber and guaiac wood leave a dark resinous warmth that lasts until you wash it off. If you have ever liked a fragrance and been told it was too serious, this is the one they meant.',
+ 'The incense accord uses three separate resins distilled at different temperatures — one for the church, one for the ember, one for the ash.',
+ '9–12 hours', 'Strong', 'Autumn and winter', 'Evenings, contemplation, formal wear'),
+
+('LM-011', 'Citrus Vert', 'Maison Lumière',
+ 'Mandarin and lime over crushed basil — a sharp, herbal cologne with a vetiver finish. Our most accessible introduction to the house.',
+ 3, 'unisex', 50, 95.00, 110.00, 36,
+ 'Mandarin, Lime', 'Petitgrain, Basil', 'Vetiver, Musk',
+ '#d7e89a', '#7d9a3a', 'tall', 0, 4.3,
+ 'Mandarin, lime and crushed basil.',
+ 'Our most accessible introduction to the house: mandarin and lime over crushed basil and petitgrain, with vetiver underneath for a green, dry finish. It is the bottle we hand people who say they do not usually wear fragrance — within a week they are wearing it every day.',
+ 'Basil is tinctured in-house from the same plants that season the atelier kitchen''s lunch. There is no practical reason for it, we simply like it.',
+ '4–6 hours', 'Soft', 'Spring and summer', 'Everyday, office, first fragrance'),
+
+('LM-012', 'Thé Blanc', 'Maison Lumière',
+ 'White tea and magnolia on a bed of clean musk. Quiet, precise and beautifully uncomplicated.',
+ 5, 'unisex', 100, 110.00, NULL, 33,
+ 'White Tea, Bergamot', 'Magnolia, Neroli', 'Clean Musk, Blond Woods',
+ '#e6e2d3', '#9a927a', 'tall', 0, 4.4,
+ 'White tea, magnolia, clean musk.',
+ 'Quiet, precise and beautifully uncomplicated. White tea gives a dry tannic calm, magnolia adds cream without sweetness, and clean musk disappears into skin the way good laundry does. It is the fragrance equivalent of fresh sheets, and it asks nothing of the people around you.',
+ 'The tea note is built from a molecular isolate of the actual leaf — one of the few materials we buy rather than compose, because nothing we tried came close.',
+ '5–7 hours', 'Soft and intimate', 'Year round', 'Everyday, office, warm weather'),
+
+('LM-013', 'Cuir de Velours', 'Maison Lumière',
+ 'Suede softened with orris and violet leaf, deepened by birch tar and amber. A suede glove, not a leather jacket.',
+ 2, 'men', 50, 265.00, NULL, 0,
+ 'Saffron, Violet Leaf', 'Suede, Orris', 'Birch, Amber',
+ '#a3502e', '#3f1f12', 'square', 0, 4.7,
+ 'Suede, orris and a breath of birch tar.',
+ 'A suede glove, not a leather jacket. Saffron and violet leaf open sharply, orris and suede soften the middle into something almost powdery, and birch tar and amber at the base give it just enough smoke to remind you what it is. Currently our most requested restock.',
+ 'Suede is the hardest accord in perfumery — it takes eleven materials to smell like one, and this took the perfumer four attempts to get right.',
+ '8–10 hours', 'Moderate', 'Autumn and winter', 'Evenings, formal wear, cold weather'),
+
+('LM-014', 'Figue Sauvage', 'Maison Lumière',
+ 'Fig leaf and green mandarin over milky fig nectar, moss and cedar. Sun-warmed Mediterranean afternoons.',
+ 5, 'unisex', 50, 140.00, NULL, 26,
+ 'Fig Leaf, Green Mandarin', 'Fig Nectar, Cedar', 'Moss, Musk',
+ '#b9cf9a', '#55703f', 'round', 1, 4.6,
+ 'Sun-warmed fig, leaf and moss.',
+ 'Mediterranean afternoons with nowhere to be. Green fig leaf and mandarin keep the opening cool, fig nectar brings the milk-and-honey sweetness at the heart, and moss and cedar leave you in the shade of the tree itself. Our clients'' summer signature, three years running.',
+ 'We use two fig materials — leaf and fruit — at opposite ends of the formula, so it smells of the whole tree rather than a single note.',
+ '6–8 hours', 'Moderate', 'Spring and summer', 'Daytime, holidays, weekends');
+
+INSERT INTO reviews (product_id, author, rating, comment) VALUES
+(1, 'Camille R.', 5, 'Wore this to a winter wedding and three people asked what it was. The saffron opening is stunning.'),
+(1, 'Daniel O.', 5, 'Rich but never heavy. Lasts a full working day on skin.'),
+(1, 'Priya N.', 4, 'Beautiful, though I wish the rose lingered longer. Still a repurchase.'),
+(2, 'Ana M.', 5, 'The most elegant floral I own — soft, never cloying.'),
+(2, 'Julia K.', 4, 'Lovely for spring. Sillage is moderate, which I actually prefer.'),
+(3, 'Marcus T.', 5, 'A daily signature. Clean cedar with a surprising iris twist.'),
+(4, 'Sofia L.', 5, 'Instant summer holiday in a bottle. The mint is so fresh.'),
+(4, 'Ben H.', 4, 'Great value for 100ml. Fades a little by evening.'),
+(6, 'Yusuf A.', 5, 'Serious oud, seriously good. One spray is enough.'),
+(8, 'Hannah B.', 5, 'Cozy without being sugary. My autumn default.'),
+(8, 'Grace W.', 4, 'Gorgeous vanilla, slightly sweet for the office.'),
+(14, 'Tom S.', 5, 'Fig done properly — green, creamy and never synthetic.');
+
+-- Demo orders so the admin screens have something to track.
+INSERT INTO orders
+(reference, customer_name, email, phone, address, city, postal_code, country, notes,
+ subtotal, shipping, total, status, tracking_number, admin_note, created_at)
+VALUES
+('LM-7C2F9A', 'Camille Rousseau', 'camille@example.com', '+33 1 42 68 53 00',
+ '12 Rue des Fleurs', 'Paris', '75004', 'France', 'Gift wrap, please.',
+ 330.00, 0.00, 330.00, 'shipped', 'DHL-7749 2031 88', 'Repeat client — include the discovery set.',
+ '2026-10-09 11:24:00'),
+('LM-4B8E1D', 'Marcus Thompson', 'marcus@example.com', NULL,
+ '88 Cedar Lane', 'Chicago', '60611', 'United States', NULL,
+ 145.00, 12.00, 157.00, 'paid', NULL, NULL,
+ '2026-10-12 16:05:00'),
+('LM-9A3C77', 'Priya Nair', 'priya@example.com', '+44 20 7946 0958',
+ '4 Blenheim Road', 'London', 'NW3 3TH', 'United Kingdom', 'Deliver after the 20th, please.',
+ 160.00, 0.00, 160.00, 'pending', NULL, 'VIP — deliver from 20 October as requested.',
+ '2026-10-15 09:41:00'),
+('LM-2D6F58', 'Sofia Lombardi', 'sofia@example.com', NULL,
+ '29 Via del Corso', 'Roma', '00186', 'Italy', NULL,
+ 95.00, 12.00, 107.00, 'pending', NULL, NULL,
+ '2026-10-16 18:12:00'),
+('LM-5E1B34', 'Ana Moreau', 'ana@example.com', NULL,
+ '5 Place Bellecour', 'Lyon', '69002', 'France', NULL,
+ 110.00, 12.00, 122.00, 'cancelled', NULL, 'Customer cancelled before dispatch — refund issued.',
+ '2026-10-10 13:47:00');
+
+INSERT INTO order_items (order_id, product_id, product_name, unit_price, quantity, size_ml) VALUES
+(1, 1,  'Nuit d''Or',     185.00, 1, 50),
+(1, 3,  'Cèdre Blanc',    145.00, 1, 50),
+(2, 3,  'Cèdre Blanc',    145.00, 1, 50),
+(3, 2,  'Fleur de Lune',  160.00, 1, 75),
+(4, 11, 'Citrus Vert',     95.00, 1, 50),
+(5, 12, 'Thé Blanc',      110.00, 1, 100);
+
+INSERT INTO contacts (name, email, subject, message, handled) VALUES
+('Élodie Marchand', 'elodie@example.com', 'Sample request',
+ 'Could you send samples of Fleur de Lune and Vanille Noire to Marseille before Christmas? I am buying gifts for two very different people.', 0),
+('Tom Sandoval', 'tom@example.com', 'Where is my order?',
+ 'Has order LM-4B8E1D shipped yet? It is a gift for next weekend.', 1);
+
+INSERT INTO newsletter_subscribers (email) VALUES
+('camille@example.com'),
+('marcus@example.com'),
+('priya@example.com');

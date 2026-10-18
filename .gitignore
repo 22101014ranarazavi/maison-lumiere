@@ -1,0 +1,24 @@
+# --- dependencies ---------------------------------------------------------
+node_modules/
+vendor/
+
+# --- build output ----------------------------------------------------------
+frontend/dist/
+dist/
+
+# --- environment -----------------------------------------------------------
+# Keep backend/.env.example; never commit the real key or DB credentials.
+backend/.env
+
+# --- logs and caches -------------------------------------------------------
+*.log
+npm-debug.log*
+.php-cs-fixer.cache
+.phpunit.result.cache
+
+# --- editors and OS --------------------------------------------------------
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
