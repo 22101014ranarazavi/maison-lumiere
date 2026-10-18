@@ -1,0 +1,111 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  # ---------------------------------------------------------------------------
+  # API: spin up MySQL, seed it, boot the PHP dev server and run the test suite.
+  # ---------------------------------------------------------------------------
+  api:
+    name: API tests (PHP 8.3 + MySQL 8.4)
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.4
+        env:
+          MYSQL_ROOT_HOST: '%'
+          MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+          MYSQL_DATABASE: maison_lumiere
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -uroot --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: pdo_mysql, mbstring, iconv
+          coverage: none
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Lint PHP sources
+        run: |
+          find backend -name '*.php' -print0 | xargs -0 -n1 -P4 php -l > /dev/null
+          echo "PHP syntax OK"
+
+      - name: Configure backend environment
+        run: cp backend/.env.example backend/.env
+
+      - name: Create schema and seed the database
+        working-directory: backend
+        run: php scripts/setup.php
+
+      - name: Start the API
+        working-directory: backend
+        run: |
+          nohup php -S 127.0.0.1:8000 router.php > /tmp/php-api.log 2>&1 &
+          disown || true
+
+      - name: Wait for the API
+        run: |
+          for i in $(seq 1 30); do
+            if curl -sf http://127.0.0.1:8000/api/categories > /dev/null; then
+              echo "API is up"; exit 0
+            fi
+            sleep 1
+          done
+          echo "API failed to start"; cat /tmp/php-api.log; exit 1
+
+      - name: Smoke test the public API
+        run: node scripts/api-smoke-test.mjs
+
+      - name: Admin, guide and order API tests
+        run: node scripts/admin-api-test.mjs
+
+      - name: Concierge chatbot tests
+        run: node scripts/chat-test.mjs
+
+      - name: Show API log on failure
+        if: failure()
+        run: cat /tmp/php-api.log
+
+  # ---------------------------------------------------------------------------
+  # Frontend: install dependencies and make sure the production build compiles.
+  # ---------------------------------------------------------------------------
+  web:
+    name: Frontend build (Node 22)
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install dependencies
+        working-directory: frontend
+        run: npm ci
+
+      - name: Build
+        working-directory: frontend
+        run: npm run build

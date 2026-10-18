@@ -1,5 +1,7 @@
 # Maison Lumière
 
+[![CI](https://github.com/22101014ranarazavi/maison-lumiere/actions/workflows/ci.yml/badge.svg)](https://github.com/22101014ranarazavi/maison-lumiere/actions/workflows/ci.yml)
+
 A small-batch perfumery shop — a React storefront, a PHP/MySQL API, an admin
 console for orders and products, a long-form guide page for every fragrance,
 and a built-in fragrance concierge chatbot.
@@ -236,3 +238,15 @@ frontend/
     styles/               index.css (storefront) and admin.css (console)
 scripts/                  test and health-check scripts
 ```
+
+## Continuous integration
+
+`.github/workflows/ci.yml` runs on every push and pull request:
+
+- **api** — boots MySQL 8.4, seeds the schema, starts the PHP server and runs
+  the smoke, admin and concierge test scripts.
+- **web** — installs the frontend dependencies and produces a production build.
+
+## License
+
+MIT — see [LICENSE](LICENSE).
